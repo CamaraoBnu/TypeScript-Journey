@@ -144,10 +144,9 @@ export const createManualTimeEntry = async (req: Request, res: Response) => {
 
 export const approveTimeEntry = async (req: Request, res: Response) => {
   try {
-    const { 
-      user_id,
-      timeEntry_id
-    } = req.body;
+
+    const user_id = Number(req.params.user_id);
+    const timeEntry_id = Number(req.params.timeEntry_id);
     
     const timeEntry = await TimeEntry.findByPk(timeEntry_id);
     if (!timeEntry) {
@@ -177,10 +176,8 @@ export const approveTimeEntry = async (req: Request, res: Response) => {
 
 export const rejectTimeEntry = async (req: Request, res: Response) => {
     try {
-    const { 
-      user_id,
-      timeEntry_id
-    } = req.body;
+    const user_id = Number(req.params.user_id);
+    const timeEntry_id = Number(req.params.timeEntry_id);
 
     const timeEntry = await TimeEntry.findByPk(timeEntry_id);
     if (!timeEntry) {

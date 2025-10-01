@@ -16,7 +16,7 @@ router.get("/", getUserTimeEntries);
 router.get("/:user_id", getTimeEntriesByUserId);
 router.patch("/:id", inactivateUserTimeEntry);
 router.post("/manualTimeEntry", createManualTimeEntry);
-router.patch("/approve", approveTimeEntry);
-router.patch("/reject", rejectTimeEntry);
+router.patch("/:user_id/approve/:timeEntry_id", approveTimeEntry);
+router.patch("/:user_id/reject/:timeEntry_id", rejectTimeEntry);
 
 export default router;
