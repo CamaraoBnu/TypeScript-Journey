@@ -16,7 +16,7 @@ import {
 } from "sequelize";
 
 @Table({
-  tableName: "work_shifts",
+  tableName: "users",
   timestamps: true,
 })
 export class User extends Model<

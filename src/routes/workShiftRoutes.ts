@@ -5,13 +5,14 @@ import {
   getWorkShiftById,
   updateWorkShift,
   deleteWorkShift,
+  getWorkShiftByUserId,
 } from "../controllers/workShiftController";
 
 const router = Router();
 
 router.post("/", createWorkShift);
 router.get("/", getWorkShifts);
-router.get("/:id", getWorkShiftById);
+router.get("/:id", getWorkShiftByUserId);
 router.put("/:id", updateWorkShift);
 router.delete("/:id", deleteWorkShift);
 

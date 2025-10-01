@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import { WorkShifts } from "../models/WorkShifts";
 import { User } from "../models/User";
+import { sequelize } from "../database";
+import { QueryTypes } from "sequelize";
 
 
 export const createWorkShift = async (req: Request, res: Response) => {
@@ -99,6 +101,24 @@ export const deleteWorkShift = async (req: Request, res: Response) => {
     await workShift.destroy();
 
     return res.json({ message: "WorkShift deleted successfully" });
+  } catch (error: any) {
+    console.error(error);
+    return res.status(500).json({ error: error.message });
+  }
+};
+
+
+
+export const getWorkShiftByUserId = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const workShift = await sequelize.query('select * from work_shifts where user_id = :id', { type: QueryTypes.SELECT, replacements: {id} });
+
+    if (!workShift?.length) {
+      return res.status(404).json({ error: "This user does not have a WorkShift" });      
+    }
+
+    return res.json(workShift);
   } catch (error: any) {
     console.error(error);
     return res.status(500).json({ error: error.message });

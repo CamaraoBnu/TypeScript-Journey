@@ -10,7 +10,6 @@ dotenv.config();
 const app = express();
 
 app.use(express.json());
-
 const PORT = process.env.PORT || 3000;
 
 app.get("/", (req, res) => {
@@ -20,7 +19,7 @@ app.get("/", (req, res) => {
 //Routes
 app.use("/users", userRoutes);
 app.use("/workshifts", workShiftRoutes);
-app.use("/user-timestamps", timeEntriesRoutes); 
+app.use("/user-timeEntry", timeEntriesRoutes); 
 
 sequelize.authenticate()
   .then(async () => {
